@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -57,60 +58,306 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Portfolio</h2>
-                <p class="section-subtitle">A curated selection of original works</p>
-            </div>
-            
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">All Works</button>
-                <button class="filter-btn" data-filter="paintings">Paintings</button>
-                <button class="filter-btn" data-filter="drawings">Drawings</button>
-                <button class="filter-btn" data-filter="mixed-media">Mixed Media</button>
-            </div>
-
-            <!-- Card Carousel Portfolio -->
-            <div class="portfolio-carousel-container">
-                <div class="carousel-container">
-                    <button class="nav-arrow left">‹</button>
-                    <div class="carousel-track">
-                        <div class="card" data-index="0">
-                            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Emotional Landscape">
+    <!-- Artwork Series Showcase -->
+    <section id="portfolio" class="artwork-showcase">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <!-- Abstract Emotions Series -->
+                <div class="swiper-slide">
+                    <div class="gradient abstract-gradient"></div>
+                    <h1 data-animate="bottom" class="series-title">Abstract Emotions</h1>
+                    <img class="hero-artwork" src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Abstract Emotions Series" loading="lazy" />
+                    <div class="box-container">
+                        <div data-animate="bottom" class="box gallery">
+                            <h1>Gallery</h1>
+                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Abstract Emotions" loading="lazy" />
+                            <h3>Emotional Landscape</h3>
+                            <p>Oil on Canvas, 2024</p>
+                            <button class="more-btn" data-modal="abstract-gallery">
+                                <span class="more-btn-icon">+</span>
+                            </button>
                         </div>
-                        <div class="card" data-index="1">
-                            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Color Symphony">
+                        <div class="box-mobile" data-modal="abstract-gallery">
+                            <h1>Gallery</h1>
                         </div>
-                        <div class="card" data-index="2">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Urban Reflections">
+                        <div data-animate="bottom" class="box story">
+                            <h1>Artist Story</h1>
+                            <p>
+                                This series explores the intersection of emotion and color, 
+                                where each piece represents a different emotional state...
+                            </p>
+                            <button class="more-btn" data-modal="abstract-story">
+                                <span class="more-btn-icon">+</span>
+                            </button>
                         </div>
-                        <div class="card" data-index="3">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Textured Memories">
-                        </div>
-                        <div class="card" data-index="4">
-                            <img src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHByb2Zlc3Npb25hbCUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Inner Light">
-                        </div>
-                        <div class="card" data-index="5">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fluid Motion">
+                        <div class="box-mobile" data-modal="abstract-story">
+                            <h1>Artist Story</h1>
                         </div>
                     </div>
-                    <button class="nav-arrow right">›</button>
                 </div>
 
-                <div class="artwork-info">
-                    <h2 class="artwork-name">Emotional Landscape</h2>
-                    <p class="artwork-medium">Oil on Canvas, 2024</p>
+                <!-- Urban Reflections Series -->
+                <div class="swiper-slide">
+                    <div class="gradient urban-gradient"></div>
+                    <h1 data-animate="bottom" class="series-title">Urban Reflections</h1>
+                    <img class="hero-artwork" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Urban Reflections Series" loading="lazy" />
+                    <div class="box-container">
+                        <div data-animate="bottom" class="box gallery">
+                            <h1>Gallery</h1>
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Urban Reflections" loading="lazy" />
+                            <h3>City Dreams</h3>
+                            <p>Charcoal on Paper, 2024</p>
+                            <button class="more-btn" data-modal="urban-gallery">
+                                <span class="more-btn-icon">+</span>
+                            </button>
+                        </div>
+                        <div class="box-mobile" data-modal="urban-gallery">
+                            <h1>Gallery</h1>
+                        </div>
+                        <div data-animate="bottom" class="box story">
+                            <h1>Artist Story</h1>
+                            <p>
+                                Inspired by the energy and complexity of city life, 
+                                this series captures the essence of urban existence...
+                            </p>
+                            <button class="more-btn" data-modal="urban-story">
+                                <span class="more-btn-icon">+</span>
+                            </button>
+                        </div>
+                        <div class="box-mobile" data-modal="urban-story">
+                            <h1>Artist Story</h1>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="dots">
-                    <div class="dot active" data-index="0"></div>
-                    <div class="dot" data-index="1"></div>
-                    <div class="dot" data-index="2"></div>
-                    <div class="dot" data-index="3"></div>
-                    <div class="dot" data-index="4"></div>
-                    <div class="dot" data-index="5"></div>
+                <!-- Mixed Media Explorations -->
+                <div class="swiper-slide">
+                    <div class="gradient mixed-gradient"></div>
+                    <h1 data-animate="bottom" class="series-title">Mixed Explorations</h1>
+                    <img class="hero-artwork" src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHByb2Zlc3Npb25hbCUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Mixed Media Series" loading="lazy" />
+                    <div class="box-container">
+                        <div data-animate="bottom" class="box gallery">
+                            <h1>Gallery</h1>
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mixed Media" loading="lazy" />
+                            <h3>Textured Memories</h3>
+                            <p>Mixed Media, 2024</p>
+                            <button class="more-btn" data-modal="mixed-gallery">
+                                <span class="more-btn-icon">+</span>
+                            </button>
+                        </div>
+                        <div class="box-mobile" data-modal="mixed-gallery">
+                            <h1>Gallery</h1>
+                        </div>
+                        <div data-animate="bottom" class="box story">
+                            <h1>Artist Story</h1>
+                            <p>
+                                Experimenting with various materials and techniques, 
+                                this series pushes the boundaries of traditional art...
+                            </p>
+                            <button class="more-btn" data-modal="mixed-story">
+                                <span class="more-btn-icon">+</span>
+                            </button>
+                        </div>
+                        <div class="box-mobile" data-modal="mixed-story">
+                            <h1>Artist Story</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebars -->
+        <!-- Abstract Gallery Sidebar -->
+        <div class="sidebar" id="abstract-gallery">
+            <div class="sidebar-container gallery-container">
+                <div class="sidebar-header">
+                    <button class="close-btn">
+                        <span class="close-icon">←</span>Back
+                    </button>
+                </div>
+                <div class="gallery-body">
+                    <h1>Abstract Emotions Gallery</h1>
+                    <div class="artwork-item">
+                        <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Emotional Landscape" loading="lazy" />
+                        <div class="artwork-details">
+                            <h4>Emotional Landscape</h4>
+                            <p>Oil on Canvas, 24x36 inches, 2024</p>
+                        </div>
+                        <button class="inquiry-btn">Commission Inquiry</button>
+                    </div>
+                    <div class="artwork-item">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Color Symphony" loading="lazy" />
+                        <div class="artwork-details">
+                            <h4>Color Symphony</h4>
+                            <p>Acrylic on Canvas, 30x40 inches, 2024</p>
+                        </div>
+                        <button class="inquiry-btn">Commission Inquiry</button>
+                    </div>
+                    <div class="artwork-item">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Inner Light" loading="lazy" />
+                        <div class="artwork-details">
+                            <h4>Inner Light</h4>
+                            <p>Oil on Canvas, 36x48 inches, 2024</p>
+                        </div>
+                        <button class="inquiry-btn">Commission Inquiry</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Abstract Story Sidebar -->
+        <div class="sidebar" id="abstract-story">
+            <div class="sidebar-container">
+                <div class="sidebar-header">
+                    <button class="close-btn">
+                        <span class="close-icon">←</span>Back
+                    </button>
+                </div>
+                <div class="story-body">
+                    <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Abstract Emotions Process" loading="lazy" />
+                    <h2>The Abstract Emotions Series</h2>
+                    <p>
+                        This series was born from a period of deep introspection and emotional exploration. 
+                        Each piece represents a different emotional state, translated through color, form, and texture.
+                    </p>
+                    <p>
+                        The process begins with meditation and emotional awareness, allowing the feelings to guide 
+                        the choice of colors and brushstrokes. The result is a collection that speaks to the 
+                        universal human experience of emotion.
+                    </p>
+                    <p>
+                        These works invite viewers to connect with their own emotional landscapes, creating 
+                        a dialogue between the artist's expression and the viewer's interpretation.
+                    </p>
+                    <div class="story-footer">
+                        <button class="commission-btn">Commission Similar Work</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Urban Gallery Sidebar -->
+        <div class="sidebar" id="urban-gallery">
+            <div class="sidebar-container gallery-container">
+                <div class="sidebar-header">
+                    <button class="close-btn">
+                        <span class="close-icon">←</span>Back
+                    </button>
+                </div>
+                <div class="gallery-body">
+                    <h1>Urban Reflections Gallery</h1>
+                    <div class="artwork-item">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="City Dreams" loading="lazy" />
+                        <div class="artwork-details">
+                            <h4>City Dreams</h4>
+                            <p>Charcoal on Paper, 18x24 inches, 2024</p>
+                        </div>
+                        <button class="inquiry-btn">Commission Inquiry</button>
+                    </div>
+                    <div class="artwork-item">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Urban Flow" loading="lazy" />
+                        <div class="artwork-details">
+                            <h4>Urban Flow</h4>
+                            <p>Ink on Paper, 12x16 inches, 2024</p>
+                        </div>
+                        <button class="inquiry-btn">Commission Inquiry</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Urban Story Sidebar -->
+        <div class="sidebar" id="urban-story">
+            <div class="sidebar-container">
+                <div class="sidebar-header">
+                    <button class="close-btn">
+                        <span class="close-icon">←</span>Back
+                    </button>
+                </div>
+                <div class="story-body">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmVzc2lvbmFsJTIwcGVvcGxlfGVufDB8fDB8fHww" alt="Urban Reflections Process" loading="lazy" />
+                    <h2>The Urban Reflections Series</h2>
+                    <p>
+                        Living in the city has always fascinated me with its constant movement, 
+                        energy, and complexity. This series captures the essence of urban life 
+                        through the medium of charcoal and ink.
+                    </p>
+                    <p>
+                        Each piece is created during different times of day, capturing the 
+                        changing moods of the cityscape. From the quiet moments of dawn to 
+                        the bustling energy of rush hour.
+                    </p>
+                    <p>
+                        The contrast between light and shadow, movement and stillness, 
+                        creates a visual narrative that reflects the human experience 
+                        within the urban environment.
+                    </p>
+                    <div class="story-footer">
+                        <button class="commission-btn">Commission Similar Work</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mixed Gallery Sidebar -->
+        <div class="sidebar" id="mixed-gallery">
+            <div class="sidebar-container gallery-container">
+                <div class="sidebar-header">
+                    <button class="close-btn">
+                        <span class="close-icon">←</span>Back
+                    </button>
+                </div>
+                <div class="gallery-body">
+                    <h1>Mixed Explorations Gallery</h1>
+                    <div class="artwork-item">
+                        <img src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHByb2Zlc3Npb25hbCUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Textured Memories" loading="lazy" />
+                        <div class="artwork-details">
+                            <h4>Textured Memories</h4>
+                            <p>Mixed Media, 20x20 inches, 2024</p>
+                        </div>
+                        <button class="inquiry-btn">Commission Inquiry</button>
+                    </div>
+                    <div class="artwork-item">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fluid Motion" loading="lazy" />
+                        <div class="artwork-details">
+                            <h4>Fluid Motion</h4>
+                            <p>Mixed Media, 16x20 inches, 2024</p>
+                        </div>
+                        <button class="inquiry-btn">Commission Inquiry</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mixed Story Sidebar -->
+        <div class="sidebar" id="mixed-story">
+            <div class="sidebar-container">
+                <div class="sidebar-header">
+                    <button class="close-btn">
+                        <span class="close-icon">←</span>Back
+                    </button>
+                </div>
+                <div class="story-body">
+                    <img src="https://images.unsplash.com/photo-1655249481446-25d575f1c054?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHByb2Zlc3Npb25hbCUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D" alt="Mixed Media Process" loading="lazy" />
+                    <h2>The Mixed Explorations Series</h2>
+                    <p>
+                        This series represents my journey into experimental art-making, 
+                        combining traditional and unconventional materials to create 
+                        unique textures and visual experiences.
+                    </p>
+                    <p>
+                        Each piece incorporates found objects, natural materials, and 
+                        various painting techniques, creating layers of meaning and 
+                        visual interest that invite closer inspection.
+                    </p>
+                    <p>
+                        The process is often unpredictable, allowing the materials 
+                        themselves to guide the creative direction and reveal 
+                        unexpected beauty in the combination of elements.
+                    </p>
+                    <div class="story-footer">
+                        <button class="commission-btn">Commission Similar Work</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -264,6 +511,7 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initNavigation();
     initScrollAnimations();
-    initPortfolioCarousel();
+    initArtworkShowcase();
     initSmoothScrolling();
     initFormHandling();
     initParallaxEffects();
@@ -119,83 +119,134 @@ function initScrollAnimations() {
     });
 }
 
-// Portfolio Carousel functionality
-function initPortfolioCarousel() {
-    const artworks = [
-        { name: "Emotional Landscape", medium: "Oil on Canvas, 2024" },
-        { name: "Color Symphony", medium: "Acrylic on Canvas, 2024" },
-        { name: "Urban Reflections", medium: "Charcoal on Paper, 2024" },
-        { name: "Textured Memories", medium: "Mixed Media, 2024" },
-        { name: "Inner Light", medium: "Oil on Canvas, 2024" },
-        { name: "Fluid Motion", medium: "Ink on Paper, 2024" }
-    ];
+// Artwork Showcase functionality
+function initArtworkShowcase() {
+    // Initialize Swiper
+    const swiper = new Swiper('.swiper', {
+        grabCursor: true,
+        speed: 800,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        loop: true,
+        autoplay: {
+            delay: 8000,
+            disableOnInteraction: false,
+        },
+        mousewheel: {
+            invert: false,
+            sensitivity: 1,
+        },
+        keyboard: {
+            enabled: true,
+        },
+    });
 
-    const cards = document.querySelectorAll('.card');
-    const dots = document.querySelectorAll('.dot');
-    const artworkName = document.querySelector('.artwork-name');
-    const artworkMedium = document.querySelector('.artwork-medium');
-    const leftArrow = document.querySelector('.nav-arrow.left');
-    const rightArrow = document.querySelector('.nav-arrow.right');
-    const artworkInfo = document.querySelector('.artwork-info');
-    
-    let currentIndex = 0;
-    let isAnimating = false;
+    // Sidebar functionality
+    const moreBtns = document.querySelectorAll('.more-btn');
+    const closeBtns = document.querySelectorAll('.close-btn');
+    const boxContainers = document.querySelectorAll('.box-container');
+    const body = document.querySelector('body');
+    const mobileBoxes = document.querySelectorAll('.box-mobile');
 
-    function updateCarousel(newIndex) {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        currentIndex = (newIndex + cards.length) % cards.length;
-
-        cards.forEach((card, i) => {
-            const offset = (i - currentIndex + cards.length) % cards.length;
-
-            card.classList.remove('center', 'left-1', 'left-2', 'right-1', 'right-2', 'hidden');
-
-            if (offset === 0) {
-                card.classList.add('center');
-            } else if (offset === 1) {
-                card.classList.add('right-1');
-            } else if (offset === 2) {
-                card.classList.add('right-2');
-            } else if (offset === cards.length - 1) {
-                card.classList.add('left-1');
-            } else if (offset === cards.length - 2) {
-                card.classList.add('left-2');
-            } else {
-                card.classList.add('hidden');
+    // Open sidebar
+    moreBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            let modal = btn.getAttribute('data-modal');
+            const sidebar = document.getElementById(modal);
+            if (sidebar) {
+                sidebar.style.display = 'block';
+                sidebar.classList.add('active');
+                body.classList.add('prevent-background-scroll');
+                boxContainers.forEach((container) => {
+                    container.style.display = 'none';
+                });
             }
         });
+    });
 
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === currentIndex);
+    // Close sidebar
+    closeBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const sidebar = btn.closest('.sidebar');
+            if (sidebar) {
+                sidebar.style.display = 'none';
+                sidebar.classList.remove('active');
+                body.classList.remove('prevent-background-scroll');
+                boxContainers.forEach((container) => {
+                    container.style.display = 'grid';
+                });
+            }
         });
+    });
 
-        artworkInfo.style.opacity = '0';
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('sidebar')) {
+            e.target.style.display = 'none';
+            e.target.classList.remove('active');
+            body.classList.remove('prevent-background-scroll');
+            boxContainers.forEach((container) => {
+                container.style.display = 'grid';
+            });
+        }
+    });
 
-        setTimeout(() => {
-            artworkName.textContent = artworks[currentIndex].name;
-            artworkMedium.textContent = artworks[currentIndex].medium;
-            artworkInfo.style.opacity = '1';
-        }, 300);
+    // Mobile box functionality
+    mobileBoxes.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            let modal = btn.getAttribute('data-modal');
+            const sidebar = document.getElementById(modal);
+            if (sidebar) {
+                sidebar.style.display = 'block';
+                sidebar.classList.add('active');
+                body.classList.add('prevent-background-scroll');
+                boxContainers.forEach((container) => {
+                    container.style.display = 'none';
+                });
+            }
+        });
+    });
 
-        setTimeout(() => {
-            isAnimating = false;
-        }, 800);
+    // Commission inquiry buttons
+    const inquiryBtns = document.querySelectorAll('.inquiry-btn');
+    inquiryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Scroll to commission section
+            const commissionSection = document.getElementById('commission');
+            if (commissionSection) {
+                commissionSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Commission buttons in story sidebars
+    const commissionBtns = document.querySelectorAll('.commission-btn');
+    commissionBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Scroll to commission section
+            const commissionSection = document.getElementById('commission');
+            if (commissionSection) {
+                commissionSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Add scroll prevention when sidebar is open
+    const preventScrollClass = 'prevent-background-scroll';
+    
+    // Add CSS for scroll prevention
+    if (!document.getElementById('scroll-prevention-style')) {
+        const style = document.createElement('style');
+        style.id = 'scroll-prevention-style';
+        style.textContent = `
+            .prevent-background-scroll {
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
     }
-
-    if (leftArrow) leftArrow.addEventListener('click', () => updateCarousel(currentIndex - 1));
-    if (rightArrow) rightArrow.addEventListener('click', () => updateCarousel(currentIndex + 1));
-
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => updateCarousel(i));
-    });
-
-    cards.forEach((card, i) => {
-        card.addEventListener('click', () => updateCarousel(i));
-    });
-
-    updateCarousel(0);
 }
 
 
