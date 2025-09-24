@@ -42,7 +42,7 @@ AriellePivonka-Art-Website/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/sondhath-cloud/AriellePivonka-Art-Website.git
+   git clone https://github.com/sondhath-cloud/AriellePivonka-ArtWebsite.git
    cd AriellePivonka-Art-Website
    ```
 
@@ -175,6 +175,6 @@ Created with ❤️ for showcasing contemporary art in a modern, sophisticated w
 
 ---
 
-**Live Demo**: [View Website](http://localhost:8001) (when running locally)
+**Live Demo**: [View Website](http://localhost:8002) (when running locally)
 
-**GitHub**: [sondhath-cloud/AriellePivonka-Art-Website](https://github.com/sondhath-cloud/AriellePivonka-Art-Website)
+**GitHub**: [sondhath-cloud/AriellePivonka-ArtWebsite](https://github.com/sondhath-cloud/AriellePivonka-ArtWebsite)
