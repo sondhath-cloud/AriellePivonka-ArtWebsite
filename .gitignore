@@ -1,0 +1,56 @@
+# Arielle Pivonka Art Website - Git Ignore File
+
+# Rate limiting files (temporary)
+rate_limit_*.txt
+
+# Log files
+*.log
+error.log
+access.log
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if added later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Cache files
+.cache/
+*.cache
+
+# Build files (if added later)
+dist/
+build/
+
+# PHP session files
+sess_*
+
+# Upload directories (if created)
+uploads/
+images/uploads/
+
+# Database dumps
+*.sql.backup
+*.dump

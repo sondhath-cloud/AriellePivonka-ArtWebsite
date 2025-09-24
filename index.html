@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arielle Pivonka - Artist Portfolio</title>
+    <meta name="description" content="Contemporary artist Arielle Pivonka - Original paintings, commissions, and artistic expressions">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Arielle Pivonka</h1>
+                <span class="nav-subtitle">Artist</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#commission" class="nav-link nav-cta">Commission</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">Contemporary Art</h1>
+                <h2 class="hero-subtitle">by Arielle Pivonka</h2>
+                <p class="hero-description">Exploring the intersection of emotion, color, and form through original paintings and artistic expressions.</p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+                    <a href="#commission" class="btn btn-secondary">Commission Work</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Portfolio</h2>
+                <p class="section-subtitle">A curated selection of original works</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Works</button>
+                <button class="filter-btn" data-filter="paintings">Paintings</button>
+                <button class="filter-btn" data-filter="drawings">Drawings</button>
+                <button class="filter-btn" data-filter="mixed-media">Mixed Media</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="paintings">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Abstract+Painting+1" alt="Abstract Painting 1" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Emotional Landscape</h3>
+                                <p>Oil on Canvas, 2024</p>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="paintings">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/600x800/2a2a2a/ffffff?text=Abstract+Painting+2" alt="Abstract Painting 2" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Color Symphony</h3>
+                                <p>Acrylic on Canvas, 2024</p>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="drawings">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/600x800/3a3a3a/ffffff?text=Charcoal+Drawing" alt="Charcoal Drawing" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Urban Reflections</h3>
+                                <p>Charcoal on Paper, 2024</p>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="mixed-media">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/600x800/4a4a4a/ffffff?text=Mixed+Media+1" alt="Mixed Media 1" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Textured Memories</h3>
+                                <p>Mixed Media, 2024</p>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="paintings">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/600x800/5a5a5a/ffffff?text=Abstract+Painting+3" alt="Abstract Painting 3" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Inner Light</h3>
+                                <p>Oil on Canvas, 2024</p>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="drawings">
+                    <div class="portfolio-image">
+                        <img src="https://via.placeholder.com/600x800/6a6a6a/ffffff?text=Ink+Drawing" alt="Ink Drawing" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <h3>Fluid Motion</h3>
+                                <p>Ink on Paper, 2024</p>
+                                <button class="btn btn-outline">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">About the Artist</h2>
+                    <p class="about-description">
+                        Arielle Pivonka is a contemporary artist whose work explores the complex relationship between emotion, memory, and visual expression. With a background in fine arts and a passion for experimentation, Arielle creates pieces that invite viewers to engage with their own inner landscapes.
+                    </p>
+                    <p class="about-description">
+                        Her work spans multiple mediums, from traditional oil paintings to experimental mixed-media pieces, each telling a unique story of human experience and artistic discovery.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Original Works</p>
+                        </div>
+                        <div class="stat">
+                            <h3>15+</h3>
+                            <p>Exhibitions</p>
+                        </div>
+                        <div class="stat">
+                            <h3>8</h3>
+                            <p>Years Creating</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-container">
+                        <img src="https://via.placeholder.com/500x600/2a2a2a/ffffff?text=Arielle+Pivonka" alt="Arielle Pivonka" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commission Section -->
+    <section id="commission" class="commission">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Commission Work</h2>
+                <p class="section-subtitle">Bring your vision to life with a custom piece</p>
+            </div>
+            <div class="commission-content">
+                <div class="commission-info">
+                    <h3>Custom Artwork</h3>
+                    <p>I create personalized pieces that capture your unique vision and style preferences. Whether you're looking for a specific size, color palette, or subject matter, I work closely with clients to bring their ideas to life.</p>
+                    <ul class="commission-features">
+                        <li>Personal consultation and concept development</li>
+                        <li>Multiple medium options (oil, acrylic, mixed media)</li>
+                        <li>Progress updates throughout the creation process</li>
+                        <li>Professional packaging and secure shipping</li>
+                    </ul>
+                </div>
+                <div class="commission-form">
+                    <form class="glass-form" action="commission.php" method="POST">
+                        <h3>Request a Commission</h3>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="medium" required>
+                                <option value="">Select Preferred Medium</option>
+                                <option value="oil">Oil Painting</option>
+                                <option value="acrylic">Acrylic Painting</option>
+                                <option value="mixed-media">Mixed Media</option>
+                                <option value="drawing">Drawing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="size" placeholder="Desired Size (e.g., 24x36 inches)">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" placeholder="Describe your vision..." rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's discuss your artistic vision</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p>arielle@example.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Studio</h3>
+                        <p>Available by appointment</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Social</h3>
+                        <div class="social-links">
+                            <a href="#" class="social-link">Instagram</a>
+                            <a href="#" class="social-link">Facebook</a>
+                            <a href="#" class="social-link">Twitter</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form class="glass-form" action="contact.php" method="POST">
+                        <h3>Send a Message</h3>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your message..." rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 Arielle Pivonka. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
