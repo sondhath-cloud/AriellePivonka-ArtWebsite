@@ -167,6 +167,10 @@ html {
     height: 100%;
     overflow: hidden;
     z-index: -1;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .hero-artwork-bg img {
@@ -176,6 +180,10 @@ html {
     opacity: 0.9;
     filter: grayscale(20%) brightness(1.1);
     transition: all 0.8s ease;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .hero-artwork-bg img:hover {

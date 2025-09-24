@@ -106,11 +106,25 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.portfolio-item, .about-text, .about-image, .commission-info, .contact-item, .stat');
+    const animatedElements = document.querySelectorAll('.portfolio-item, .about-text, .commission-info, .contact-item, .stat');
     animatedElements.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
     });
+    
+    // Handle about-image separately to ensure it stays visible
+    const aboutImage = document.querySelector('.about-image');
+    if (aboutImage) {
+        aboutImage.classList.add('fade-in');
+        observer.observe(aboutImage);
+        
+        // Fallback: ensure it becomes visible after a short delay
+        setTimeout(() => {
+            if (!aboutImage.classList.contains('visible')) {
+                aboutImage.classList.add('visible');
+            }
+        }, 500);
+    }
 
     // Staggered animation for portfolio items
     const portfolioItems = document.querySelectorAll('.portfolio-item');
