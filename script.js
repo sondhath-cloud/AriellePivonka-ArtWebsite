@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
     initNavigation();
     initScrollAnimations();
-    initPortfolioFilter();
+    initPortfolioCarousel();
+    initPortfolioDraggable();
+    initPortfolioViewToggle();
     initSmoothScrolling();
     initFormHandling();
     initParallaxEffects();
@@ -119,38 +121,116 @@ function initScrollAnimations() {
     });
 }
 
-// Portfolio filtering
-function initPortfolioFilter() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+// Portfolio Carousel functionality
+function initPortfolioCarousel() {
+    const artworks = [
+        { name: "Emotional Landscape", medium: "Oil on Canvas, 2024" },
+        { name: "Color Symphony", medium: "Acrylic on Canvas, 2024" },
+        { name: "Urban Reflections", medium: "Charcoal on Paper, 2024" },
+        { name: "Textured Memories", medium: "Mixed Media, 2024" },
+        { name: "Inner Light", medium: "Oil on Canvas, 2024" },
+        { name: "Fluid Motion", medium: "Ink on Paper, 2024" }
+    ];
 
-    filterButtons.forEach(button => {
+    const cards = document.querySelectorAll('.card');
+    const dots = document.querySelectorAll('.dot');
+    const artworkName = document.querySelector('.artwork-name');
+    const artworkMedium = document.querySelector('.artwork-medium');
+    const leftArrow = document.querySelector('.nav-arrow.left');
+    const rightArrow = document.querySelector('.nav-arrow.right');
+    const artworkInfo = document.querySelector('.artwork-info');
+    
+    let currentIndex = 0;
+    let isAnimating = false;
+
+    function updateCarousel(newIndex) {
+        if (isAnimating) return;
+        isAnimating = true;
+
+        currentIndex = (newIndex + cards.length) % cards.length;
+
+        cards.forEach((card, i) => {
+            const offset = (i - currentIndex + cards.length) % cards.length;
+
+            card.classList.remove('center', 'left-1', 'left-2', 'right-1', 'right-2', 'hidden');
+
+            if (offset === 0) {
+                card.classList.add('center');
+            } else if (offset === 1) {
+                card.classList.add('right-1');
+            } else if (offset === 2) {
+                card.classList.add('right-2');
+            } else if (offset === cards.length - 1) {
+                card.classList.add('left-1');
+            } else if (offset === cards.length - 2) {
+                card.classList.add('left-2');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+
+        artworkInfo.style.opacity = '0';
+
+        setTimeout(() => {
+            artworkName.textContent = artworks[currentIndex].name;
+            artworkMedium.textContent = artworks[currentIndex].medium;
+            artworkInfo.style.opacity = '1';
+        }, 300);
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, 800);
+    }
+
+    if (leftArrow) leftArrow.addEventListener('click', () => updateCarousel(currentIndex - 1));
+    if (rightArrow) rightArrow.addEventListener('click', () => updateCarousel(currentIndex + 1));
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => updateCarousel(i));
+    });
+
+    cards.forEach((card, i) => {
+        card.addEventListener('click', () => updateCarousel(i));
+    });
+
+    updateCarousel(0);
+}
+
+// Portfolio Draggable Gallery (simplified version)
+function initPortfolioDraggable() {
+    // Placeholder for draggable gallery functionality
+    // This would integrate the full GSAP draggable gallery from the component
+    console.log('Draggable gallery initialized');
+}
+
+// Portfolio View Toggle
+function initPortfolioViewToggle() {
+    const viewButtons = document.querySelectorAll('.view-btn');
+    const carouselView = document.getElementById('carousel-view');
+    const draggableView = document.getElementById('draggable-view');
+
+    viewButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-
+            const view = this.getAttribute('data-view');
+            
             // Update active button
-            filterButtons.forEach(btn => btn.classList.remove('active'));
+            viewButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            // Filter portfolio items
-            portfolioItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    item.style.display = 'block';
-                    item.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            // Re-trigger scroll animations for visible items
-            setTimeout(() => {
-                const visibleItems = document.querySelectorAll('.portfolio-item[style*="block"]');
-                visibleItems.forEach((item, index) => {
-                    item.style.animationDelay = `${index * 0.1}s`;
-                });
-            }, 100);
+            // Show/hide views
+            if (view === 'carousel') {
+                carouselView.style.display = 'block';
+                draggableView.style.display = 'none';
+            } else if (view === 'draggable') {
+                carouselView.style.display = 'none';
+                draggableView.style.display = 'block';
+                // Initialize draggable gallery when switching to it
+                initPortfolioDraggable();
+            }
         });
     });
 }
