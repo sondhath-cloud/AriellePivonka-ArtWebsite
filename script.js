@@ -122,12 +122,11 @@ function initScrollAnimations() {
 // Portfolio Carousel functionality
 function initPortfolioCarousel() {
     const artworks = [
-        { name: "Emotional Landscape", medium: "Oil on Canvas, 2024" },
-        { name: "Color Symphony", medium: "Acrylic on Canvas, 2024" },
-        { name: "Urban Reflections", medium: "Charcoal on Paper, 2024" },
-        { name: "Textured Memories", medium: "Mixed Media, 2024" },
-        { name: "Inner Light", medium: "Oil on Canvas, 2024" },
-        { name: "Fluid Motion", medium: "Ink on Paper, 2024" }
+        { name: "Self Portrait", medium: "Oil on Canvas, 2024" },
+        { name: "The Eyes", medium: "Acrylic on Canvas, 2024" },
+        { name: "Stop and Stare", medium: "Mixed Media, 2024" },
+        { name: "Trying", medium: "Oil on Canvas, 2024" },
+        { name: "Astronaut", medium: "Acrylic on Canvas, 2024" }
     ];
 
     const cards = document.querySelectorAll('.card');
