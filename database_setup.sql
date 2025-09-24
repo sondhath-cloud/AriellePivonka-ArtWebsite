@@ -153,11 +153,11 @@ CREATE TABLE IF NOT EXISTS file_uploads (
 
 -- Create sample artwork data (optional - remove if you want to start fresh)
 INSERT INTO artwork (title, description, medium, dimensions, year_created, category, featured, available) VALUES
-('Emotional Landscape', 'An exploration of inner emotions through abstract forms and vibrant colors', 'Oil on Canvas', '24x36 inches', 2024, 'paintings', TRUE, TRUE),
+('Emotional Landscape', 'An exploration of inner emotions through abstract forms and vibrant colors', 'Acrylic on Canvas', '24x36 inches', 2024, 'paintings', TRUE, TRUE),
 ('Color Symphony', 'A harmonious blend of colors creating visual music', 'Acrylic on Canvas', '30x40 inches', 2024, 'paintings', TRUE, TRUE),
 ('Urban Reflections', 'Charcoal study of city life and human connection', 'Charcoal on Paper', '18x24 inches', 2024, 'drawings', FALSE, TRUE),
 ('Textured Memories', 'Mixed media exploration of personal history', 'Mixed Media', '20x20 inches', 2024, 'mixed-media', FALSE, TRUE),
-('Inner Light', 'Abstract representation of spiritual awakening', 'Oil on Canvas', '36x48 inches', 2024, 'paintings', TRUE, FALSE),
+('Inner Light', 'Abstract representation of spiritual awakening', 'Acrylic on Canvas', '36x48 inches', 2024, 'paintings', TRUE, FALSE),
 ('Fluid Motion', 'Ink study capturing the essence of movement', 'Ink on Paper', '12x16 inches', 2024, 'drawings', FALSE, TRUE);
 
 -- Create indexes for better performance

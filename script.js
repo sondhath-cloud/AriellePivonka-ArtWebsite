@@ -133,9 +133,9 @@ function initPortfolioCarousel() {
     const artworks = [
         { 
             name: "Self Portrait", 
-            medium: "Oil on Canvas, 2024",
+            medium: "Acrylic on Canvas, 2024",
             image: "carousel/Self Portrait.jpeg",
-            description: "A deeply personal exploration of identity and self-reflection. This self-portrait captures the artist's introspective journey, blending emotional depth with technical mastery in oil painting."
+            description: "A deeply personal exploration of identity and self-reflection. This self-portrait captures the artist's introspective journey, blending emotional depth with technical mastery in acrylic painting."
         },
         { 
             name: "The Eyes", 
@@ -151,9 +151,9 @@ function initPortfolioCarousel() {
         },
         { 
             name: "Trying", 
-            medium: "Oil on Canvas, 2024",
+            medium: "Acrylic on Canvas, 2024",
             image: "carousel/Trying.jpeg",
-            description: "A raw and honest portrayal of the human struggle. This oil painting captures the essence of perseverance and the beauty found in the process of effort and determination."
+            description: "A raw and honest portrayal of the human struggle. This acrylic painting captures the essence of perseverance and the beauty found in the process of effort and determination."
         },
         { 
             name: "Astronaut", 
