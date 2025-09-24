@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initScrollAnimations();
     initPortfolioCarousel();
-    initPortfolioDraggable();
-    initPortfolioViewToggle();
     initSmoothScrolling();
     initFormHandling();
     initParallaxEffects();
@@ -200,40 +198,6 @@ function initPortfolioCarousel() {
     updateCarousel(0);
 }
 
-// Portfolio Draggable Gallery (simplified version)
-function initPortfolioDraggable() {
-    // Placeholder for draggable gallery functionality
-    // This would integrate the full GSAP draggable gallery from the component
-    console.log('Draggable gallery initialized');
-}
-
-// Portfolio View Toggle
-function initPortfolioViewToggle() {
-    const viewButtons = document.querySelectorAll('.view-btn');
-    const carouselView = document.getElementById('carousel-view');
-    const draggableView = document.getElementById('draggable-view');
-
-    viewButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const view = this.getAttribute('data-view');
-            
-            // Update active button
-            viewButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-
-            // Show/hide views
-            if (view === 'carousel') {
-                carouselView.style.display = 'block';
-                draggableView.style.display = 'none';
-            } else if (view === 'draggable') {
-                carouselView.style.display = 'none';
-                draggableView.style.display = 'block';
-                // Initialize draggable gallery when switching to it
-                initPortfolioDraggable();
-            }
-        });
-    });
-}
 
 // Smooth scrolling for anchor links
 function initSmoothScrolling() {
