@@ -122,11 +122,36 @@ function initScrollAnimations() {
 // Portfolio Carousel functionality
 function initPortfolioCarousel() {
     const artworks = [
-        { name: "Self Portrait", medium: "Oil on Canvas, 2024" },
-        { name: "The Eyes", medium: "Acrylic on Canvas, 2024" },
-        { name: "Stop and Stare", medium: "Mixed Media, 2024" },
-        { name: "Trying", medium: "Oil on Canvas, 2024" },
-        { name: "Astronaut", medium: "Acrylic on Canvas, 2024" }
+        { 
+            name: "Self Portrait", 
+            medium: "Oil on Canvas, 2024",
+            image: "art photos carousel/Self Portrait.jpeg",
+            description: "A deeply personal exploration of identity and self-reflection. This self-portrait captures the artist's introspective journey, blending emotional depth with technical mastery in oil painting."
+        },
+        { 
+            name: "The Eyes", 
+            medium: "Acrylic on Canvas, 2024",
+            image: "art photos carousel/TheEyes.png",
+            description: "An intense study of human expression and emotion. The eyes serve as windows to the soul, revealing layers of complexity and vulnerability through bold acrylic strokes."
+        },
+        { 
+            name: "Stop and Stare", 
+            medium: "Mixed Media, 2024",
+            image: "art photos carousel/Stop and Stare.png",
+            description: "A compelling mixed media piece that challenges viewers to pause and reflect. This work combines traditional and contemporary elements to create a thought-provoking visual narrative."
+        },
+        { 
+            name: "Trying", 
+            medium: "Oil on Canvas, 2024",
+            image: "art photos carousel/Trying.jpeg",
+            description: "A raw and honest portrayal of the human struggle. This oil painting captures the essence of perseverance and the beauty found in the process of effort and determination."
+        },
+        { 
+            name: "Astronaut", 
+            medium: "Acrylic on Canvas, 2024",
+            image: "art photos carousel/astronaut 8x10 border.png",
+            description: "A whimsical yet profound exploration of dreams and aspirations. The astronaut represents our universal desire to explore beyond our limits and reach for the stars."
+        }
     ];
 
     const cards = document.querySelectorAll('.card');
@@ -192,6 +217,51 @@ function initPortfolioCarousel() {
 
     cards.forEach((card, i) => {
         card.addEventListener('click', () => updateCarousel(i));
+    });
+
+    // Modal functionality
+    const modal = document.getElementById('artwork-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalClose = document.getElementById('modal-close');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMedium = document.getElementById('modal-medium');
+    const modalDescription = document.getElementById('modal-description');
+
+    // Open modal when clicking on artwork cards
+    cards.forEach((card, i) => {
+        card.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent carousel navigation
+            openModal(i);
+        });
+    });
+
+    function openModal(index) {
+        const artwork = artworks[index];
+        modalImage.src = artwork.image;
+        modalImage.alt = artwork.name;
+        modalTitle.textContent = artwork.name;
+        modalMedium.textContent = artwork.medium;
+        modalDescription.textContent = artwork.description;
+        
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close modal events
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', closeModal);
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
     });
 
     updateCarousel(0);
