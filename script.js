@@ -106,7 +106,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.portfolio-item, .about-text, .commission-info, .contact-item, .stat');
+    const animatedElements = document.querySelectorAll('.portfolio-item, .about-text, .about-image, .commission-info, .contact-item, .stat');
     animatedElements.forEach(el => {
         el.classList.add('fade-in');
         observer.observe(el);
