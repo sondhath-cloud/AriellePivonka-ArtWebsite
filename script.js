@@ -112,18 +112,13 @@ function initScrollAnimations() {
         observer.observe(el);
     });
     
-    // Handle about-image separately to ensure it stays visible
+    // Handle about-image separately - keep it always visible
     const aboutImage = document.querySelector('.about-image');
     if (aboutImage) {
-        aboutImage.classList.add('fade-in');
-        observer.observe(aboutImage);
-        
-        // Fallback: ensure it becomes visible after a short delay
-        setTimeout(() => {
-            if (!aboutImage.classList.contains('visible')) {
-                aboutImage.classList.add('visible');
-            }
-        }, 500);
+        // Don't add fade-in class to prevent hiding
+        // Just ensure it's always visible
+        aboutImage.style.opacity = '1';
+        aboutImage.style.transform = 'translateY(0)';
     }
 
     // Staggered animation for portfolio items
@@ -139,31 +134,31 @@ function initPortfolioCarousel() {
         { 
             name: "Self Portrait", 
             medium: "Oil on Canvas, 2024",
-            image: "art photos carousel/Self Portrait.jpeg",
+            image: "carousel/Self Portrait.jpeg",
             description: "A deeply personal exploration of identity and self-reflection. This self-portrait captures the artist's introspective journey, blending emotional depth with technical mastery in oil painting."
         },
         { 
             name: "The Eyes", 
             medium: "Acrylic on Canvas, 2024",
-            image: "art photos carousel/TheEyes.png",
+            image: "carousel/TheEyes.png",
             description: "An intense study of human expression and emotion. The eyes serve as windows to the soul, revealing layers of complexity and vulnerability through bold acrylic strokes."
         },
         { 
             name: "Stop and Stare", 
             medium: "Mixed Media, 2024",
-            image: "art photos carousel/Stop and Stare.png",
+            image: "carousel/Stop and Stare.png",
             description: "A compelling mixed media piece that challenges viewers to pause and reflect. This work combines traditional and contemporary elements to create a thought-provoking visual narrative."
         },
         { 
             name: "Trying", 
             medium: "Oil on Canvas, 2024",
-            image: "art photos carousel/Trying.jpeg",
+            image: "carousel/Trying.jpeg",
             description: "A raw and honest portrayal of the human struggle. This oil painting captures the essence of perseverance and the beauty found in the process of effort and determination."
         },
         { 
             name: "Astronaut", 
             medium: "Acrylic on Canvas, 2024",
-            image: "art photos carousel/astronaut 8x10 border.png",
+            image: "carousel/astronaut 8x10 border.png",
             description: "A whimsical yet profound exploration of dreams and aspirations. The astronaut represents our universal desire to explore beyond our limits and reach for the stars."
         }
     ];
