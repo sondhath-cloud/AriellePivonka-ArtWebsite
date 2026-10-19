@@ -1,0 +1,22 @@
+Require all granted
+
+# Explicitly allow access (prevents default deny that causes 403)
+<IfModule mod_authz_core.c>
+    Require all granted
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Allow from all
+</IfModule>
+
+# Default document
+DirectoryIndex index.html index.php
+
+# Disable directory listing
+Options -Indexes
+
+# Allow .htaccess overrides to be respected
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+</IfModule>

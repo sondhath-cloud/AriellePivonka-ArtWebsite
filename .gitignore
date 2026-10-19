@@ -54,3 +54,14 @@ images/uploads/
 # Database dumps
 *.sql.backup
 *.dump
+
+# Server-only secrets
+db-config.local.php
+
+# Deploy build output (made by build-deploy-zip.sh)
+zip/*.zip
+dist.zip
+
+# Holy Smocks has its own repo; business docs stay private
+holy-smocks/
+smocks-socials/

@@ -5,13 +5,15 @@ A sophisticated, ultra-modern artist portfolio website featuring glassmorphism d
 ## 🎨 Features
 
 - **Ultra-modern glassmorphism design** with sophisticated black/gray/white color scheme
+- **WebP image optimization** for faster loading and better performance
 - **Smooth animations and hover effects** throughout the site
 - **Responsive design** optimized for all devices
-- **Interactive portfolio gallery** with filtering capabilities
-- **Secure contact forms** with PHP backend
+- **Interactive portfolio carousel** with smooth transitions
+- **Secure contact forms** with PHP email backend
 - **Commission request system** for custom artwork
 - **Modern typography** using Inter font family
 - **SEO optimized** with proper meta tags and structure
+- **Live contact form** ready for SiteWorks deployment
 
 ## 🚀 Technology Stack
 
@@ -57,16 +59,19 @@ AriellePivonka-Art-Website/
 ### Production Deployment (SiteWorks Hosting)
 
 1. **Upload files** to your `public_html` directory
-2. **Create MySQL database** using phpMyAdmin
-3. **Run database setup**
-   ```sql
-   -- Import database_setup.sql in phpMyAdmin
+   - Include all WebP images for optimal performance
+2. **Update email configuration** in `contact.php` and `commission.php`:
+   ```php
+   $to_email = 'arielle@yourdomain.com'; // Your actual email
+   $from_email = 'noreply@yourdomain.com'; // Your domain email
    ```
-4. **Update configuration**
-   - Edit `contact.php` and `commission.php`
-   - Update database credentials
-   - Update email addresses
-5. **Test forms** to ensure proper functionality
+3. **Test the contact form**:
+   - Fill out the form on your live site
+   - Check that emails are received correctly
+   - Verify auto-reply functionality
+4. **Optional: Database setup** (for future enhancements)
+   - Create MySQL database using phpMyAdmin
+   - Import `database_setup.sql` if needed
 
 ## 🎯 Key Sections
 
@@ -152,17 +157,18 @@ Update CSS custom properties in `styles.css`:
 
 The website uses PHP's `mail()` function compatible with SiteWorks hosting:
 
-- **Contact Form**: Sends to artist's email with auto-reply
+- **Contact Form**: Sends to artist's email with auto-reply confirmation
 - **Commission Requests**: Priority notifications with detailed information
-- **Professional Templates**: HTML email formatting
-- **Spam Protection**: Rate limiting and validation
+- **Professional Templates**: HTML email formatting with responsive design
+- **Spam Protection**: Rate limiting, validation, and honeypot fields
+- **No Database Required**: Simple email-only setup for quick deployment
 
 ## 🚀 Performance
 
+- **WebP Image Format**: All images converted to WebP for 30-50% smaller file sizes
 - **Optimized Images**: Lazy loading for portfolio images
-- **Minified Assets**: Compressed CSS and JavaScript
 - **Efficient Animations**: Hardware-accelerated CSS transitions
-- **Responsive Images**: Proper sizing for different devices
+- **Responsive Images**: Proper sizing for different devices with fallback support
 - **Fast Loading**: Optimized for SiteWorks shared hosting
 
 ## 📝 License

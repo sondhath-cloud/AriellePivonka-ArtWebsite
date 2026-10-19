@@ -131,34 +131,39 @@ function initScrollAnimations() {
 // Portfolio Carousel functionality
 function initPortfolioCarousel() {
     const artworks = [
-        { 
-            name: "Self Portrait", 
+        {
+            name: "Self Portrait",
             medium: "Acrylic on Canvas, 2024",
-            image: "carousel/Self Portrait.jpeg",
+            imageWebp: "carousel/self-portrait.webp",
+            imageFallback: "carousel/self-portrait.jpeg",
             description: "A deeply personal exploration of identity and self-reflection. This self-portrait captures the artist's introspective journey, blending emotional depth with technical mastery in acrylic painting."
         },
-        { 
-            name: "The Eyes", 
+        {
+            name: "The Eyes",
             medium: "Acrylic on Canvas, 2024",
-            image: "carousel/TheEyes.png",
+            imageWebp: "carousel/the-eyes.webp",
+            imageFallback: "carousel/the-eyes.png",
             description: "An intense study of human expression and emotion. The eyes serve as windows to the soul, revealing layers of complexity and vulnerability through bold acrylic strokes."
         },
-        { 
-            name: "Stop and Stare", 
+        {
+            name: "Stop and Stare",
             medium: "Mixed Media, 2024",
-            image: "carousel/Stop and Stare.png",
+            imageWebp: "carousel/stop-and-stare.webp",
+            imageFallback: "carousel/stop-and-stare.png",
             description: "A compelling mixed media piece that challenges viewers to pause and reflect. This work combines traditional and contemporary elements to create a thought-provoking visual narrative."
         },
-        { 
-            name: "Trying", 
+        {
+            name: "Trying",
             medium: "Acrylic on Canvas, 2024",
-            image: "carousel/Trying.jpeg",
+            imageWebp: "carousel/trying.webp",
+            imageFallback: "carousel/trying.jpeg",
             description: "A raw and honest portrayal of the human struggle. This acrylic painting captures the essence of perseverance and the beauty found in the process of effort and determination."
         },
-        { 
-            name: "Astronaut", 
+        {
+            name: "Astronaut",
             medium: "Acrylic on Canvas, 2024",
-            image: "carousel/astronaut 8x10 border.png",
+            imageWebp: "carousel/astronaut-8x10-border.webp",
+            imageFallback: "carousel/astronaut-8x10-border.png",
             description: "A whimsical yet profound exploration of dreams and aspirations. The astronaut represents our universal desire to explore beyond our limits and reach for the stars."
         }
     ];
@@ -247,7 +252,16 @@ function initPortfolioCarousel() {
 
     function openModal(index) {
         const artwork = artworks[index];
-        modalImage.src = artwork.image;
+        if (!artwork) return;
+
+        modalImage.dataset.fallbackLoaded = 'false';
+        modalImage.src = artwork.imageWebp;
+        modalImage.onerror = function handleError() {
+            if (modalImage.dataset.fallbackLoaded === 'false') {
+                modalImage.dataset.fallbackLoaded = 'true';
+                modalImage.src = artwork.imageFallback;
+            }
+        };
         modalImage.alt = artwork.name;
         modalTitle.textContent = artwork.name;
         modalMedium.textContent = artwork.medium;
@@ -305,29 +319,44 @@ function initFormHandling() {
     const forms = document.querySelectorAll('.glass-form');
     
     forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
             const submitButton = this.querySelector('button[type="submit"]');
             const originalText = submitButton.textContent;
+            const formAction = this.getAttribute('action');
             
             // Show loading state
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
             this.classList.add('loading');
             
-            // Simulate form submission (replace with actual PHP handling)
-            setTimeout(() => {
-                // Reset form
-                this.reset();
+            try {
+                // Submit form to PHP backend
+                const response = await fetch(formAction, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Success
+                    this.reset();
+                    showNotification('Message sent successfully!', 'success');
+                } else {
+                    // Error from server
+                    showNotification('Failed to send message. Please try again.', 'error');
+                }
+            } catch (error) {
+                // Network or other error
+                console.error('Form submission error:', error);
+                showNotification('Failed to send message. Please try again.', 'error');
+            } finally {
+                // Reset button
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
                 this.classList.remove('loading');
-                
-                // Show success message
-                showNotification('Message sent successfully!', 'success');
-            }, 2000);
+            }
         });
     });
 }
@@ -346,7 +375,7 @@ function initParallaxEffects() {
     }
 }
 
-// Lazy loading for images
+// Lazy loading for images (fade-in when in view; already-loaded images stay visible)
 function initLazyLoading() {
     const images = document.querySelectorAll('img[loading="lazy"]');
     
@@ -355,13 +384,15 @@ function initLazyLoading() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.style.opacity = '0';
                     img.style.transition = 'opacity 0.3s ease';
-                    
-                    img.onload = function() {
+                    if (img.complete) {
                         img.style.opacity = '1';
-                    };
-                    
+                    } else {
+                        img.style.opacity = '0';
+                        img.onload = function() {
+                            img.style.opacity = '1';
+                        };
+                    }
                     imageObserver.unobserve(img);
                 }
             });
@@ -377,34 +408,20 @@ function showNotification(message, type = 'info') {
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
     
-    // Style the notification
-    Object.assign(notification.style, {
-        position: 'fixed',
-        top: '100px',
-        right: '20px',
-        background: type === 'success' ? 'rgba(34, 197, 94, 0.9)' : 'rgba(59, 130, 246, 0.9)',
-        color: 'white',
-        padding: '1rem 1.5rem',
-        borderRadius: '10px',
-        backdropFilter: 'blur(10px)',
-        border: '1px solid rgba(255, 255, 255, 0.2)',
-        zIndex: '10000',
-        transform: 'translateX(100%)',
-        transition: 'transform 0.3s ease'
-    });
-    
     document.body.appendChild(notification);
     
     // Animate in
     setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
+        notification.classList.add('show');
     }, 100);
     
     // Remove after delay
     setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
+        notification.classList.remove('show');
         setTimeout(() => {
-            document.body.removeChild(notification);
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
         }, 300);
     }, 3000);
 }
@@ -603,8 +620,9 @@ window.addEventListener('scroll', optimizedScrollHandler);
 // Preload critical images
 function preloadImages() {
     const criticalImages = [
-        'https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Abstract+Painting+1',
-        'https://via.placeholder.com/600x800/2a2a2a/ffffff?text=Abstract+Painting+2'
+        'hero-image.webp',
+        'hero-image.png',
+        'arielle-2025.webp'
     ];
     
     criticalImages.forEach(src => {

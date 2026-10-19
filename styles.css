@@ -147,6 +147,7 @@ html {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    isolation: isolate;
 }
 
 .hero-background {
@@ -156,7 +157,7 @@ html {
     width: 100%;
     height: 100%;
     background: var(--gradient-primary);
-    z-index: -2;
+    z-index: 1;
 }
 
 .hero-artwork-bg {
@@ -166,40 +167,39 @@ html {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -1;
+    z-index: 1;
     transform: translate3d(0, 0, 0);
     will-change: transform;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
+.hero-artwork-bg picture,
 .hero-artwork-bg img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.9;
-    filter: grayscale(20%) brightness(1.1);
-    transition: all 0.8s ease;
+}
+
+.hero-artwork-bg img {
+    opacity: 1;
     transform: translate3d(0, 0, 0);
-    will-change: transform;
+    will-change: transform, opacity;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
 }
 
-.hero-artwork-bg img:hover {
+.hero--smoke-intro .hero-artwork-bg {
+    opacity: 0;
+}
+
+.hero--smoke-revealing .hero-artwork-bg {
     opacity: 1;
-    filter: grayscale(0%) brightness(1.2);
+    transition: opacity 2.5s ease-out;
 }
 
 .hero-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/></svg>');
-    opacity: 0.3;
+    display: none;
 }
 
 .hero-overlay {
@@ -208,13 +208,37 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--gradient-overlay);
-    z-index: -1;
+    background: transparent;
+    z-index: 2;
+}
+
+.hero-smoke {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 2.5s ease-out;
+    background: #050807;
+}
+
+.hero-smoke--revealed {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.hero-smoke canvas {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
 }
 
 .hero-content {
+    position: relative;
     text-align: center;
-    z-index: 1;
+    z-index: 4;
     max-width: 800px;
     padding: 0 2rem;
 }
@@ -231,8 +255,8 @@ html {
 
 .hero-subtitle {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 300;
-    color: var(--text-light);
+    font-weight: 400;
+    color: #ffffff;
     margin-bottom: 2rem;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.7s forwards;
@@ -240,7 +264,7 @@ html {
 
 .hero-description {
     font-size: 1.25rem;
-    color: var(--text-muted);
+    color: #ffffff;
     margin-bottom: 3rem;
     max-width: 600px;
     margin-left: auto;
@@ -263,6 +287,7 @@ html {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 4;
     opacity: 0;
     animation: fadeInUp 1s ease-out 1.3s forwards;
 }
@@ -341,6 +366,33 @@ html {
     transform: translateY(-2px);
 }
 
+/* Persistent Contact (email) button – fixed on every page */
+.contact-float-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 999;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--accent-color);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border-radius: 50px;
+    backdrop-filter: blur(20px);
+    box-shadow: var(--shadow-glass);
+    transition: var(--transition-smooth);
+}
+.contact-float-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
 /* Section Styles */
 section {
     padding: 6rem 0;
@@ -414,6 +466,26 @@ section {
     height: 100%;
     object-fit: cover;
     transition: var(--transition-smooth);
+}
+
+.card picture {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.card picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card--trying picture img {
+    transform: rotate(90deg);
+}
+
+.card--self-portrait picture img {
+    transform: rotate(90deg);
 }
 
 .card:hover {
@@ -845,6 +917,7 @@ section {
     backdrop-filter: blur(10px);
 }
 
+.image-container picture,
 .image-container img {
     width: 100%;
     height: auto;
@@ -854,6 +927,11 @@ section {
 /* Commission Section */
 .commission {
     background: var(--secondary-color);
+}
+
+.commission-page {
+    padding-top: calc(80px + 4rem);
+    min-height: calc(100vh - 80px);
 }
 
 .commission-content {
@@ -1178,6 +1256,40 @@ section {
     pointer-events: none;
 }
 
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 10000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-glass);
+}
+
+.notification-success {
+    background: rgba(34, 197, 94, 0.9);
+    color: white;
+}
+
+.notification-error {
+    background: rgba(239, 68, 68, 0.9);
+    color: white;
+}
+
+.notification-info {
+    background: rgba(59, 130, 246, 0.9);
+    color: white;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
 /* Focus States for Accessibility */
 .btn:focus,
 .nav-link:focus,
@@ -1199,9 +1311,218 @@ textarea:focus {
 
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
+    .hero-smoke {
+        display: none;
+    }
+
+    .hero--smoke-intro .hero-artwork-bg {
+        opacity: 1;
+    }
+
     * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========== Sky page (Canvallax parallax from climate-house) ========== */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 10000;
+    padding: 0.75rem 1.25rem;
+    background: #fff;
+    color: #1a1a1a;
+}
+
+.skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+}
+
+canvas.bg-canvas,
+canvas.canvallax.bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    pointer-events: none;
+}
+
+body.page--sky {
+    background-image: linear-gradient(to top, #d7dde6 40%, #97a8c0 80%);
+    background-size: cover;
+    width: 400vw;
+    min-height: 400vh;
+    height: 400vh;
+    overflow-x: hidden;
+    color: #ffffff;
+}
+
+body.page--sky .contact-float-btn {
+    display: none;
+}
+
+html:has(body.page--sky) {
+    min-height: 100%;
+}
+
+body.page--sky.page--sky-static {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    background: linear-gradient(180deg, #07588a 0%, #e1f6f4 100%);
+}
+
+body.page--sky .sky-scroll-track {
+    width: 1px;
+    height: 300vh;
+    pointer-events: none;
+}
+
+body.page--sky .navbar--sky {
+    background: rgba(255, 255, 255, 0.18);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.page--sky .navbar--sky .nav-logo h1,
+body.page--sky .navbar--sky .nav-link {
+    color: #ffffff;
+    text-shadow: 0 1px 8px rgba(14, 36, 51, 0.35);
+}
+
+body.page--sky .navbar--sky .nav-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+body.page--sky .navbar--sky .nav-cta {
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+}
+
+body.page--sky .sky-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    pointer-events: none;
+    padding-top: 5.5rem;
+}
+
+body.page--sky .sky-page * {
+    pointer-events: auto;
+}
+
+body.page--sky .sky-hero {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-height: 0;
+}
+
+body.page--sky .sky-hero-copy {
+    --hero-fade: 1;
+    --sub-fade: 0;
+    display: grid;
+    place-items: start start;
+    width: min(calc(100% - 4rem), 52rem);
+    margin-inline: auto;
+    padding-inline: 2rem;
+}
+
+body.page--sky .sky-hero-copy > * {
+    grid-area: 1 / 1;
+}
+
+body.page--sky .sky-wordmark {
+    margin: 0;
+    font-weight: 700;
+    font-size: clamp(3rem, 11vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: #ffffff;
+    text-align: left;
+    text-shadow:
+        0 2px 8px rgba(14, 36, 51, 0.35),
+        0 8px 32px rgba(14, 36, 51, 0.25);
+    opacity: var(--hero-fade);
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+}
+
+body.page--sky .sky-wordmark__line {
+    display: block;
+}
+
+body.page--sky .sky-hero-copy.is-subheader .sky-wordmark {
+    visibility: hidden;
+}
+
+body.page--sky .sky-reveal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    opacity: var(--sub-fade);
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+}
+
+body.page--sky .sky-reveal.is-interactive {
+    pointer-events: auto;
+}
+
+body.page--sky .sky-footnote {
+    margin: 0;
+    max-width: 28rem;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow:
+        0 1px 3px rgba(14, 36, 51, 0.6),
+        0 2px 16px rgba(14, 36, 51, 0.4);
+}
+
+body.page--sky .sky-explore {
+    margin-top: 0.25rem;
+    box-shadow: 0 2px 16px rgba(14, 36, 51, 0.25);
+}
+
+@media (max-width: 768px) {
+    body.page--sky {
+        width: 100%;
+        max-width: 100vw;
+    }
+
+    body.page--sky .sky-wordmark {
+        font-size: clamp(2.5rem, 14vw, 4.5rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.page--sky .sky-wordmark,
+    body.page--sky .sky-reveal {
+        transition: none;
+    }
+
+    body.page--sky .sky-hero-copy.is-subheader .sky-wordmark {
+        display: none;
+    }
+
+    body.page--sky .sky-hero-copy.is-subheader .sky-reveal {
+        opacity: 1;
+        pointer-events: auto;
     }
 }

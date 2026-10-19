@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arielle Pivonka - Artist Portfolio</title>
-    <meta name="description" content="Contemporary artist Arielle Pivonka - Original paintings, commissions, and artistic expressions">
+    <meta name="description" content="Artist Arielle Pivonka - Original paintings, commissions, and artistic expressions">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Hero smoke: hide artwork until intro completes (prevents flash before WebGL) -->
+    <style>
+        .hero--smoke-intro .hero-artwork-bg { opacity: 0; }
+        .hero-smoke { background: #050807; }
+    </style>
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+
+    <link rel="preload" href="assets/smoke-element.png" as="image">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +42,8 @@
                 <a href="#portfolio" class="nav-link">Portfolio</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <a href="#commission" class="nav-link nav-cta">Commission</a>
+                <a href="sky.html" class="nav-link">Sky</a>
+                <a href="commission.html" class="nav-link nav-cta">Commission</a>
             </div>
             <div class="nav-toggle" id="nav-toggle">
                 <span class="bar"></span>
@@ -33,22 +53,29 @@
         </div>
     </nav>
 
+    <!-- Persistent Contact (email) button -->
+    <a href="mailto:ariellepivonka@gmail.com" class="contact-float-btn" aria-label="Email Arielle Pivonka">Contact</a>
+
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section id="home" class="hero hero--smoke-intro">
             <div class="hero-background">
                 <div class="hero-artwork-bg">
-                    <img src="heroimage.png" alt="Contemporary Art Background" loading="lazy">
+                    <picture>
+                        <source srcset="hero-image.webp" type="image/webp">
+                        <img src="hero-image.png" alt="Art background" fetchpriority="high">
+                    </picture>
                 </div>
                 <div class="hero-overlay"></div>
             </div>
+        <div class="hero-smoke" data-smoke-canvas data-smoke-mode="overlay" aria-hidden="true"></div>
         <div class="hero-content">
             <div class="hero-text">
-                <h1 class="hero-title">Contemporary Art</h1>
-                <h2 class="hero-subtitle">by Arielle Pivonka</h2>
+                <h1 class="hero-title">Arielle Pivonka</h1>
+                <h2 class="hero-subtitle">Artist</h2>
                 <p class="hero-description">Exploring the intersection of emotion, color, and form through original paintings and artistic expressions.</p>
                 <div class="hero-buttons">
                     <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
-                    <a href="#commission" class="btn btn-secondary">Commission Work</a>
+                    <a href="commission.html" class="btn btn-secondary">Commission Work</a>
                 </div>
             </div>
         </div>
@@ -77,20 +104,35 @@
                 <div class="carousel-container">
                     <button class="nav-arrow left">‹</button>
                     <div class="carousel-track">
-                        <div class="card" data-index="0">
-                            <img src="carousel/Self Portrait.jpeg" alt="Self Portrait">
+                        <div class="card card--self-portrait" data-index="0">
+                            <picture>
+                                <source srcset="carousel/self-portrait.webp" type="image/webp">
+                                <img src="carousel/self-portrait.jpeg" alt="Self Portrait">
+                            </picture>
                         </div>
                         <div class="card" data-index="1">
-                            <img src="carousel/TheEyes.png" alt="The Eyes">
+                            <picture>
+                                <source srcset="carousel/the-eyes.webp" type="image/webp">
+                                <img src="carousel/the-eyes.png" alt="The Eyes">
+                            </picture>
                         </div>
                         <div class="card" data-index="2">
-                            <img src="carousel/Stop and Stare.png" alt="Stop and Stare">
+                            <picture>
+                                <source srcset="carousel/stop-and-stare.webp" type="image/webp">
+                                <img src="carousel/stop-and-stare.png" alt="Stop and Stare">
+                            </picture>
                         </div>
-                        <div class="card" data-index="3">
-                            <img src="carousel/Trying.jpeg" alt="Trying">
+                        <div class="card card--trying" data-index="3">
+                            <picture>
+                                <source srcset="carousel/trying.webp" type="image/webp">
+                                <img src="carousel/trying.jpeg" alt="Trying">
+                            </picture>
                         </div>
                         <div class="card" data-index="4">
-                            <img src="carousel/astronaut 8x10 border.png" alt="Astronaut">
+                            <picture>
+                                <source srcset="carousel/astronaut-8x10-border.webp" type="image/webp">
+                                <img src="carousel/astronaut-8x10-border.png" alt="Astronaut">
+                            </picture>
                         </div>
                     </div>
                     <button class="nav-arrow right">›</button>
@@ -157,56 +199,11 @@
                 </div>
                 <div class="about-image">
                     <div class="image-container">
-                        <img src="Arielle 2025.png" alt="Arielle Pivonka" loading="lazy">
+                        <picture>
+                            <source srcset="arielle-2025.webp" type="image/webp">
+                            <img src="arielle-2025.png" alt="Arielle Pivonka" width="960" height="1326" loading="lazy" decoding="async">
+                        </picture>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Commission Section -->
-    <section id="commission" class="commission">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Commission Work</h2>
-                <p class="section-subtitle">Bring your vision to life with a custom piece</p>
-            </div>
-            <div class="commission-content">
-                <div class="commission-info">
-                    <h3>Custom Artwork</h3>
-                    <p>I create personalized pieces that capture your unique vision and style preferences. Whether you're looking for a specific size, color palette, or subject matter, I work closely with clients to bring their ideas to life.</p>
-                    <ul class="commission-features">
-                        <li>Personal consultation and concept development</li>
-                        <li>Multiple medium options (acrylic, mixed media)</li>
-                        <li>Progress updates throughout the creation process</li>
-                        <li>Professional packaging and secure shipping</li>
-                    </ul>
-                </div>
-                <div class="commission-form">
-                    <form class="glass-form" action="commission.php" method="POST">
-                        <h3>Request a Commission</h3>
-                        <div class="form-group">
-                            <input type="text" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Email Address" required>
-                        </div>
-                        <div class="form-group">
-                            <select name="medium" required>
-                                <option value="">Select Preferred Medium</option>
-                                <option value="acrylic">Acrylic Painting</option>
-                                <option value="mixed-media">Mixed Media</option>
-                                <option value="drawing">Drawing</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="size" placeholder="Desired Size (e.g., 24x36 inches)">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="description" placeholder="Describe your vision..." rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit Request</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -223,7 +220,7 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <h3>Email</h3>
-                        <p>arielle@example.com</p>
+                        <p>ariellepivonka@gmail.com</p>
                     </div>
                     <div class="contact-item">
                         <h3>Studio</h3>
@@ -265,7 +262,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-text">
-                    <p>&copy; 2024 Arielle Pivonka. All rights reserved.</p>
+                    <p>&copy; 2026 Arielle Pivonka. All rights reserved.</p>
                 </div>
                 <div class="footer-links">
                     <a href="#privacy">Privacy Policy</a>
@@ -275,6 +272,8 @@
         </div>
     </footer>
 
+    <script src="assets/js/three.min.js"></script>
     <script src="script.js"></script>
+    <script src="smoke-hero.js"></script>
 </body>
 </html>

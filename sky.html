@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky — Arielle Pivonka</title>
+    <meta name="description" content="Parallax sky animation — Arielle Pivonka">
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="page--sky">
+    <a class="skip-link" href="#sky-main">Skip to content</a>
+
+    <nav class="navbar navbar--sky">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Arielle Pivonka</h1>
+                    <span class="nav-subtitle">Artist</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="sky.html" class="nav-link" aria-current="page">Sky</a>
+                <a href="commission.html" class="nav-link nav-cta">Commission</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sky-page" id="sky-main">
+        <section class="sky-hero" aria-label="Sky animation">
+            <div class="sky-hero-copy" id="sky-hero-copy">
+                <h1 class="sky-wordmark">
+                    <span class="sky-wordmark__line">Arielle</span>
+                    <span class="sky-wordmark__line">Pivonka</span>
+                </h1>
+                <div class="sky-reveal" aria-hidden="true">
+                    <p class="sky-footnote">Scroll to drift through the sky</p>
+                    <a class="btn btn-primary sky-explore" href="index.html#portfolio">View Portfolio</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="sky-scroll-track" aria-hidden="true"></div>
+
+    <script src="assets/js/canvallax.js"></script>
+    <script src="assets/js/canvallax-sky.js"></script>
+    <script src="assets/js/sky-scroll-reveal.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

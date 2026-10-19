@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commission Work - Arielle Pivonka</title>
+    <meta name="description" content="Request a custom commission from artist Arielle Pivonka - Acrylic, mixed media, and drawings">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>Arielle Pivonka</h1>
+                    <span class="nav-subtitle">Artist</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#portfolio" class="nav-link">Portfolio</a>
+                <a href="index.html#about" class="nav-link">About</a>
+                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="sky.html" class="nav-link">Sky</a>
+                <a href="commission.html" class="nav-link nav-cta">Commission</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Persistent Contact (email) button -->
+    <a href="mailto:ariellepivonka@gmail.com" class="contact-float-btn" aria-label="Email Arielle Pivonka">Contact</a>
+
+    <!-- Commission Section -->
+    <section id="commission" class="commission commission-page">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Commission Work</h2>
+                <p class="section-subtitle">Bring your vision to life with a custom piece</p>
+            </div>
+            <div class="commission-content">
+                <div class="commission-info">
+                    <h3>Custom Artwork</h3>
+                    <p>I create personalized pieces that capture your unique vision and style preferences. Whether you're looking for a specific size, color palette, or subject matter, I work closely with clients to bring their ideas to life.</p>
+                    <ul class="commission-features">
+                        <li>Personal consultation and concept development</li>
+                        <li>Multiple medium options (acrylic, mixed media)</li>
+                        <li>Progress updates throughout the creation process</li>
+                        <li>Professional packaging and secure shipping</li>
+                    </ul>
+                </div>
+                <div class="commission-form">
+                    <form class="glass-form" action="commission.php" method="POST">
+                        <h3>Request a Commission</h3>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="medium" required>
+                                <option value="">Select Preferred Medium</option>
+                                <option value="acrylic">Acrylic Painting</option>
+                                <option value="mixed-media">Mixed Media</option>
+                                <option value="drawing">Drawing</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="size" placeholder="Desired Size (e.g., 24x36 inches)">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="description" placeholder="Describe your vision..." rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2026 Arielle Pivonka. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html#privacy">Privacy Policy</a>
+                    <a href="index.html#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

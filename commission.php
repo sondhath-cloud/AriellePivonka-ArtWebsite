@@ -5,15 +5,15 @@
 // Start session for CSRF protection
 session_start();
 
-// Database configuration (update with your SiteWorks MySQL details)
-$host = 'localhost'; // Usually localhost on SiteWorks
-$dbname = 'arielle_art_db'; // Your database name
-$username = 'your_db_username'; // Your MySQL username
-$password = 'your_db_password'; // Your MySQL password
+// Database configuration (optional) – server-only db-config.local.php returning
+// ['host' => ..., 'dbname' => ..., 'username' => ..., 'password' => ...]. Never commit it.
+// Without it, requests are still emailed; they just aren't also saved to MySQL.
+$db_config_file = __DIR__ . '/db-config.local.php';
+$db_config = is_readable($db_config_file) ? include $db_config_file : null;
 
-// Email configuration (using SiteWorks email)
-$to_email = 'arielle@yourdomain.com'; // Update with actual email
-$from_email = 'noreply@yourdomain.com'; // Update with your domain
+// Email configuration – notifications go to Arielle
+$to_email = 'ariellepivonka@gmail.com';
+$from_email = 'noreply@holysmocksartclub.com'; // Domain is authenticated in Brevo
 $site_name = 'Arielle Pivonka Art';
 
 // Function to sanitize input
@@ -29,22 +29,18 @@ function validate_email($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-// Function to send email
-function send_email($to, $subject, $message, $from) {
-    $headers = "From: $from\r\n";
-    $headers .= "Reply-To: $from\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-    
-    return mail($to, $subject, $message, $headers);
-}
+// Sends via Brevo (falls back to PHP mail())
+require_once __DIR__ . '/brevo-mail.php';
 
 // Function to log commission request to database
 function log_commission($name, $email, $medium, $size, $description, $ip_address) {
-    global $host, $dbname, $username, $password;
-    
+    global $db_config;
+    if (!is_array($db_config)) {
+        return false;
+    }
+
     try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+        $pdo = new PDO("mysql:host={$db_config['host']};dbname={$db_config['dbname']};charset=utf8", $db_config['username'], $db_config['password']);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $stmt = $pdo->prepare("INSERT INTO commissions (name, email, medium, size, description, ip_address, status, created_at) VALUES (?, ?, ?, ?, ?, ?, 'pending', NOW())");
@@ -179,8 +175,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </body>
         </html>";
         
-        // Send email
-        $email_sent = send_email($to_email, $email_subject, $email_message, $from_email);
+        // Send notification to Arielle (Reply-To set so she can reply to the client)
+        $email_sent = send_email($to_email, $email_subject, $email_message, $from_email, $email);
         
         // Update rate limit
         file_put_contents($rate_limit_file, $current_time);
@@ -253,7 +249,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     // Redirect back to commission page with status
-    $redirect_url = 'index.html#commission';
+    $redirect_url = 'commission.html';
     if ($success) {
         $redirect_url .= '?success=1';
     } else {
@@ -264,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// If accessed directly, redirect to main page
-header('Location: index.html');
+// If accessed directly, redirect to commission page
+header('Location: commission.html');
 exit;
 ?>

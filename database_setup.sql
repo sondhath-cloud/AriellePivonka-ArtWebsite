@@ -1,11 +1,8 @@
 -- Database Setup for Arielle Pivonka Art Website
--- Run this in your SiteWorks phpMyAdmin or MySQL interface
+-- Database: sondraha_arielle_art_db (already created – run this in phpMyAdmin or MySQL)
+-- Run this script after selecting the database, or run the USE statement first.
 
--- Create database (if it doesn't exist)
-CREATE DATABASE IF NOT EXISTS arielle_art_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- Use the database
-USE arielle_art_db;
+USE sondraha_arielle_art_db;
 
 -- Create contacts table
 CREATE TABLE IF NOT EXISTS contacts (
@@ -91,7 +88,7 @@ CREATE TABLE IF NOT EXISTS site_settings (
 INSERT INTO site_settings (setting_key, setting_value, description) VALUES
 ('site_title', 'Arielle Pivonka - Artist Portfolio', 'Main site title'),
 ('artist_name', 'Arielle Pivonka', 'Artist full name'),
-('artist_email', 'arielle@yourdomain.com', 'Primary contact email'),
+('artist_email', 'ariellepivonka@gmail.com', 'Primary contact email'),
 ('artist_phone', '', 'Contact phone number'),
 ('artist_location', '', 'Artist location'),
 ('social_instagram', '', 'Instagram profile URL'),
@@ -151,7 +148,7 @@ CREATE TABLE IF NOT EXISTS file_uploads (
     FOREIGN KEY (uploaded_by) REFERENCES admin_users(id) ON DELETE SET NULL
 );
 
--- Create sample artwork data (optional - remove if you want to start fresh)
+-- Create sample artwork data (optional – remove or comment out if you want to start with no data)
 INSERT INTO artwork (title, description, medium, dimensions, year_created, category, featured, available) VALUES
 ('Emotional Landscape', 'An exploration of inner emotions through abstract forms and vibrant colors', 'Acrylic on Canvas', '24x36 inches', 2024, 'paintings', TRUE, TRUE),
 ('Color Symphony', 'A harmonious blend of colors creating visual music', 'Acrylic on Canvas', '30x40 inches', 2024, 'paintings', TRUE, TRUE),
@@ -160,18 +157,10 @@ INSERT INTO artwork (title, description, medium, dimensions, year_created, categ
 ('Inner Light', 'Abstract representation of spiritual awakening', 'Acrylic on Canvas', '36x48 inches', 2024, 'paintings', TRUE, FALSE),
 ('Fluid Motion', 'Ink study capturing the essence of movement', 'Ink on Paper', '12x16 inches', 2024, 'drawings', FALSE, TRUE);
 
--- Create indexes for better performance
+-- Indexes for better performance (skip if you re-run and already have them)
 CREATE INDEX idx_contacts_email_status ON contacts(email, status);
 CREATE INDEX idx_commissions_status_created ON commissions(status, created_at);
 CREATE INDEX idx_artwork_category_featured ON artwork(category, featured);
 
--- Grant permissions (adjust username as needed for your SiteWorks setup)
--- GRANT SELECT, INSERT, UPDATE, DELETE ON arielle_art_db.* TO 'your_db_username'@'localhost';
-
--- Show tables to verify creation
+-- Verify
 SHOW TABLES;
-
--- Show table structures
-DESCRIBE contacts;
-DESCRIBE commissions;
-DESCRIBE artwork;

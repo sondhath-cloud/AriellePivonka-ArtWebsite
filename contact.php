@@ -1,19 +1,10 @@
 <?php
 // Contact Form Handler for Arielle Pivonka Art Website
-// Designed for SiteWorks hosting with MySQL database
+// Simple email-only version for SiteWorks hosting
 
-// Start session for CSRF protection
-session_start();
-
-// Database configuration (update with your SiteWorks MySQL details)
-$host = 'localhost'; // Usually localhost on SiteWorks
-$dbname = 'arielle_art_db'; // Your database name
-$username = 'your_db_username'; // Your MySQL username
-$password = 'your_db_password'; // Your MySQL password
-
-// Email configuration (using SiteWorks email)
-$to_email = 'arielle@yourdomain.com'; // Update with actual email
-$from_email = 'noreply@yourdomain.com'; // Update with your domain
+// Email configuration – notifications go to Arielle
+$to_email = 'ariellepivonka@gmail.com';
+$from_email = 'noreply@holysmocksartclub.com'; // Domain is authenticated in Brevo
 $site_name = 'Arielle Pivonka Art';
 
 // Function to sanitize input
@@ -29,33 +20,8 @@ function validate_email($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-// Function to send email
-function send_email($to, $subject, $message, $from) {
-    $headers = "From: $from\r\n";
-    $headers .= "Reply-To: $from\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "X-Mailer: PHP/" . phpversion();
-    
-    return mail($to, $subject, $message, $headers);
-}
-
-// Function to log contact to database
-function log_contact($name, $email, $subject, $message, $ip_address) {
-    global $host, $dbname, $username, $password;
-    
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $stmt = $pdo->prepare("INSERT INTO contacts (name, email, subject, message, ip_address, created_at) VALUES (?, ?, ?, ?, ?, NOW())");
-        $stmt->execute([$name, $email, $subject, $message, $ip_address]);
-        
-        return true;
-    } catch(PDOException $e) {
-        error_log("Database error: " . $e->getMessage());
-        return false;
-    }
-}
+// Sends via Brevo (falls back to PHP mail())
+require_once __DIR__ . '/brevo-mail.php';
 
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -119,9 +85,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // If no errors, process the form
     if (empty($errors)) {
-        // Log to database
-        $db_success = log_contact($name, $email, $subject, $message, $ip_address);
-        
         // Prepare email content
         $email_subject = "New Contact Form Submission - $subject";
         $email_message = "
@@ -174,8 +137,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </body>
         </html>";
         
-        // Send email
-        $email_sent = send_email($to_email, $email_subject, $email_message, $from_email);
+        // Send notification to Arielle (Reply-To set so she can reply to the submitter)
+        $email_sent = send_email($to_email, $email_subject, $email_message, $from_email, $email);
         
         // Update rate limit
         file_put_contents($rate_limit_file, $current_time);
